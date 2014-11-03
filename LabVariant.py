@@ -25,35 +25,44 @@
 from gi.repository import Gtk
 
 class LabVariant :
+	global text_var_entry
+	text_var_entry = 92
+	
 	class Handler :
 		"""Callback handlers for widgets"""
 		def onDestroy (self, *args) :
 			Gtk.main_quit ()
-			print (args)
-		def onEntryChanged (self, *entry) : 
-			for i in entry :
-				print (i.get_text())
-	
-	global text_var_entry
-	text_var_entry = 92		
+			
+		def onEntryChanged (self, obj, window) :
+			entry = window.entry
+			label = window.label
+			text_var_entry = window.var_entry.get_text()
+			for i in range(len(entry)):
+				x = entry[i].get_text()
+				if (len (x) != 0) and (len (text_var_entry) != 0 ) :
+					label[i].set_text(str((int(text_var_entry) % int(x)) + 1))
+				else :
+					label[i].set_text ("Не определено")
+							
 	def __init__ (self) :
 		builder = Gtk.Builder ()
 		builder.add_from_file ("LabVariant.glade")
 		self.window = builder.get_object ("window1")
 		self.window.connect ("destroy", self.Handler().onDestroy)
-				
+		self.window.connect ("delete_event", self.Handler().onDestroy)
+
+		
+		# Getting entries and labels form *.glade		
 		self.entry = []
-		self.entry.append (builder.get_object ("entry00"))
-		k = 1
-		for i in self.entry : i.set_text (str(2*k)); k += 1
-		self.entry[0].connect ("changed", self.Handler().onEntryChanged, *self.entry)
 		self.label = []
 		for i in range (3) :
-			self.entry.append (builder.get_object ("entry0" + str(i+1)))
-			self.entry[i+1].connect ("changed", self.Handler().onEntryChanged, *self.entry)
-			self.label.append (builder.get_object ("label0" + str(i)))
-		
-		
+			self.entry.append (builder.get_object ("entry0" + str(i)))
+			self.entry[i].connect ("changed", self.Handler().onEntryChanged, self)
+			self.label.append (builder.get_object ("label0" + str(i)))	
+			self.label[i].set_text ("Не определено")
+		self.var_entry = builder.get_object ("var_entry")
+		self.var_entry.connect ("changed", self.Handler().onEntryChanged, self)
+		self.var_entry.set_text (str(text_var_entry))
 		
 	def run (self) :
 		"""Run program"""

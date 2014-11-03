@@ -5,6 +5,7 @@
   <object class="GtkWindow" id="window1">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">LabVariant</property>
+    <property name="window_position">center</property>
     <property name="default_width">440</property>
     <property name="default_height">220</property>
     <signal name="destroy" handler="onDestroy" swapped="no"/>
@@ -65,7 +66,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry00">
+              <object class="GtkEntry" id="var_entry">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <signal name="changed" handler="onEntryChanged" swapped="no"/>
@@ -131,7 +132,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="entry01">
+                          <object class="GtkEntry" id="entry00">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                           </object>
@@ -165,7 +166,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="label01">
+                          <object class="GtkLabel" id="label00">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">label</property>
@@ -237,7 +238,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="entry02">
+                          <object class="GtkEntry" id="entry01">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                           </object>
@@ -271,7 +272,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="label02">
+                          <object class="GtkLabel" id="label01">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">label</property>
@@ -343,7 +344,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="entry03">
+                          <object class="GtkEntry" id="entry02">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                           </object>
@@ -377,7 +378,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="label03">
+                          <object class="GtkLabel" id="label02">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">label</property>
